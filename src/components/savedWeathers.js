@@ -1,65 +1,65 @@
 import React, { Component } from "react";
 import { Button } from "primereact/button";
 import axios from "axios";
-import { Card } from "primereact/card";
 import WeatherCard from "./WeatherCard";
 
 export class savedWeathers extends Component {
   constructor() {
     super();
     this.state = {
-      citySearched: "",
-      temperature: "",
-      humidity: "",
-      //   searches: null,
-      searches: {
-        id: 1,
-        cityname: "Houston",
-        temperature: 92,
-        humidity: 55,
-      },
+      loading: false,
+      searches: null,
+      toDelete: null,
     };
   }
-
-  onSubmit = (e) => {
-    e.preventDefault();
+  componentDidMount() {
+    this.setState({
+      loading: true,
+    });
     axios.get("http://localhost:8080/savedWeather").then((weather) => {
       console.log(weather);
       console.log(weather.data);
       this.setState({
-        ...this.state,
         searches: weather.data,
+        loading: false,
       });
       console.log(this.state.searches);
     });
-  };
+  }
 
-  onDelete = (e) => {
-    e.preventDefault();
-    axios.delete("http://localhost:8080/savedWeather").then((id) => {
-      //   ({ id: id });
-    });
-  };
+  // onDelete = (e) => {
+  //   this.setState({
+  //     toDelete: this.cards.id,
+  //   });
+  //   e.preventDefault();
+  //   axios.post("http://localhost:8080/savedWeather").then((entry) => {
+  //     // ({ id: id });
+  //   });
+  // };
 
   render() {
-    const weatherInfo = this.state.searches;
-    console.log(weatherInfo.id);
-    console.log(weatherInfo.cityname);
-    console.log(weatherInfo.temperature);
-    console.log(weatherInfo.humidity);
-    // Now Add the mapping statement
-    // weatherInfo.map((id) => {});
-    return (
-      <>
-        <Button label="Get All Weather!" onClick={this.onSubmit} />
-        <Card key={weatherInfo.id}>
-          City: {weatherInfo.cityname}
-          Temperature: {weatherInfo.temperature}
-          Humidity: {weatherInfo.humidity}
-          <Button label="Delete Entry!" onClick={this.onDelete} />
-        </Card>
-      </>
-    );
+    if (this.state.searches === null) {
+      return <p>PLEASE SEARCH FOR SOMETHING</p>;
+    } else {
+      const weatherInfo = this.state.searches;
+      //   let loading = this.state.loading ? { weatherCard } : <div>Loading!</div>;
+
+      let weatherCardStuff = weatherInfo.map((cards) => (
+        <WeatherCard data={cards} />
+      ));
+      return (
+        <>
+          {weatherCardStuff}
+          {/* <Card key={data.cards.id}>
+                  City: {data.cards.cityname}
+                  Temperature: {data.cards.temperature}
+                  Humidity: {data.cards.humidity}
+                  <Button label="Delete Entry!" onClick={this.onDelete} />
+              </Card> */}
+          {/* <WeatherCard data={this.state.searches} /> */}
+        </>
+      );
+    }
   }
 }
 

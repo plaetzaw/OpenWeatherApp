@@ -1,42 +1,37 @@
-// import React, { Component } from "react";
-// import { Button } from "primereact/button";
-// import axios from "axios";
-// import { Card } from "primereact/card";
+import React, { Component } from "react";
+import { Card } from "primereact/card";
+import { Button } from "primereact/button";
+import axios from "axios";
 
-// export class savedWeathers extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       citySearched: "",
-//       temperature: "",
-//       humidity: "",
-//     };
-//   }
+export default class WeatherCard extends Component {
+  onDelete = (e) => {
+    let idDel = this.props.data.id;
+    e.preventDefault();
+    axios.post("http://localhost:8080/savedWeather", idDel).then((entry) => {});
+  };
 
-//   onSubmit = (e) => {
-//     e.preventDefault();
-//     axios.get("http://localhost:8080/savedWeather").then((weather) => {
-//       console.log(weather);
-//       console.log(weather.data);
-//       this.setState({
-//         searches: weather.data,
-//       });
-//       console.log(this.state.searches);
-//     });
-//   };
+  render() {
+    console.log(this.props);
 
-//   render() {
-//     return (
-//       <>
-//         {/* <Card key={index}>
-//           City: {weatherInfo.cityname}
-//           Temperature: {weatherInfo.temperature}
-//           Humidity: {weatherInfo.humidity}
-//           <Button label="Delete Entry!" onClick={this.onDelete} />
-//         </Card> */}
-//       </>
-//     );
-//   }
-// }
+    const { data } = this.props;
+    console.log(`THIS IS THE DATA FOR WEATHER CARD${data}`);
 
-// export default savedWeathers;
+    // if (data.searches === null) {
+    //   return <p>LOADING</p>;
+    // } else {
+    //   const weatherInfo = data.searches;
+    //   console.log(weatherInfo);
+
+    //   const weatherCard = weatherInfo.map((cards) => (
+
+    //   ))
+    return (
+      <Card key={data.id}>
+        City: {data.cityname}
+        Temperature: {data.temperature}
+        Humidity: {data.humidity}
+        <Button label="Delete Entry!" onClick={this.onDelete} />
+      </Card>
+    );
+  }
+}
