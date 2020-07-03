@@ -5,6 +5,7 @@ import { apiKey } from "./apiKey";
 import axios from "axios";
 import dayjs from "dayjs";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import { Card } from "primereact/card";
 import "primeflex/primeflex.css";
 
 export class weatherSearch extends Component {
@@ -55,7 +56,7 @@ export class weatherSearch extends Component {
     };
     console.log(weatherObj);
     axios.post("http://localhost:8080/viewWeather", weatherObj).then((res) => {
-      console.log("POST PLS");
+      console.log("Posting Weather Info to the DB");
       console.log(res);
     });
   };
@@ -63,7 +64,6 @@ export class weatherSearch extends Component {
   render() {
     return (
       <div className="p-fluid">
-        Weather Search
         <br />
         What city would you like to search for weather in?
         <br />
@@ -76,10 +76,14 @@ export class weatherSearch extends Component {
           <Button label="Search!" onClick={this.onSubmit} />
           <Button label="SAVE!" onClick={this.onSave} />
         </div>
-        <br />
-        Weather in {this.state.citySearched}
-        Temperature: {this.state.temperature}
-        Humidity: {this.state.humidity}
+        <Card>
+          <br />
+          Weather in {this.state.citySearched}
+          <br />
+          Temperature: {this.state.temperature}F
+          <br />
+          Humidity: {this.state.humidity}%
+        </Card>
       </div>
     );
   }
