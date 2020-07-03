@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Button } from "primereact/button";
 import axios from "axios";
 
 export class savedWeathers extends Component {
@@ -11,14 +12,20 @@ export class savedWeathers extends Component {
     };
   }
 
-  pastWeathers() {
-    axios.get("/savedWeather").then((res) => {
-      console.log(res);
+  onSubmit = (e) => {
+    e.preventDefault();
+    axios.get("http://localhost:8080/savedWeather").then((weather) => {
+      console.log(weather);
     });
-  }
+    console.log("PRESS BOOTen");
+  };
 
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <Button label="Get All Weather!" onClick={this.onSubmit} />
+      </div>
+    );
   }
 }
 

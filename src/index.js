@@ -9,8 +9,8 @@ ReactDOM.render(
   <BrowserRouter>
     <Header />
     <Switch>
-      <Route path="/" component={weatherSearch} />
-      <Route path="/savedWeathers" component={savedWeathers} />
+      <Route exact path="/" component={weatherSearch} />
+      <Route exact path="/savedWeathers" component={savedWeathers} />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")
