@@ -15,7 +15,7 @@ export default class WeatherCard extends Component {
     axios.post("http://localhost:8080/deleteWeather", idObj).then((entry) => {
       console.log(`Removing entry ${idObj} from the Database`);
       console.log(entry);
-      //   Window.reload();
+      window.location.reload(false);
     });
   };
 
