@@ -39,9 +39,11 @@ export class weatherSearch extends Component {
             parseInt((weather.data.main.temp - 273.15) * (9 / 5) + 32)
           ),
           humidity: parseInt(weather.data.main.humidity),
-          date: dayjs.extend(advancedFormat),
+          date: dayjs().format("YYYY-MM-DD [at] HH:mm:ss"),
         });
-        console.log(weather.data.main.humidity);
+        console.log(this.state.temperature);
+        console.log(this.state.humidity);
+        console.log(this.state.date);
         console.log(weather.data);
       });
   };
@@ -52,7 +54,7 @@ export class weatherSearch extends Component {
       cityname: this.state.citySearched,
       temperature: this.state.temperature,
       humidity: this.state.humidity,
-      //   date: this.state.date,
+      date: this.state.date,
     };
     console.log(weatherObj);
     axios.post("http://localhost:8080/viewWeather", weatherObj).then((res) => {

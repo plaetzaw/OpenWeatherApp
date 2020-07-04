@@ -42,6 +42,7 @@ export default class WeatherCard extends Component {
         <br />
         Humidity: {data.humidity}
         <br />
+        Inserted into DB: {data.date}
         <Button label="Delete Entry!" onClick={this.onDelete} />
         <br></br>
       </Card>
