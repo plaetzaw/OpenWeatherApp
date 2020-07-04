@@ -6,13 +6,16 @@ import axios from "axios";
 export default class WeatherCard extends Component {
   onDelete = (e) => {
     e.preventDefault();
-    let id = this.props.data.id;
-    console.log(typeof id);
-    console.log(id);
-    axios.post("http://localhost:8080/deleteWeather", id).then((entry) => {
-      console.log(`Removing entry ${id} from the Database`);
+    let idObj = {
+      id: this.props.data.id,
+    };
+    // let id = this.props.data.id;
+    console.log(typeof idObj);
+    console.log(idObj);
+    axios.post("http://localhost:8080/deleteWeather", idObj).then((entry) => {
+      console.log(`Removing entry ${idObj} from the Database`);
       console.log(entry);
-      //   WeatherCard.reload();
+      //   Window.reload();
     });
   };
 
