@@ -5,16 +5,22 @@ import axios from "axios";
 
 export default class WeatherCard extends Component {
   onDelete = (e) => {
-    let idDel = this.props.data.id;
     e.preventDefault();
-    axios.post("http://localhost:8080/savedWeather", idDel).then((entry) => {});
+    let id = this.props.data.id;
+    console.log(typeof id);
+    console.log(id);
+    axios.post("http://localhost:8080/deleteWeather", id).then((entry) => {
+      console.log(`Removing entry ${id} from the Database`);
+      console.log(entry);
+      //   WeatherCard.reload();
+    });
   };
 
   render() {
     console.log(this.props);
 
     const { data } = this.props;
-    console.log(`THIS IS THE DATA FOR WEATHER CARD${data}`);
+    console.log(`THIS IS THE DATA FOR WEATHER CARD ${data.id}`);
 
     // if (data.searches === null) {
     //   return <p>LOADING</p>;
@@ -28,9 +34,13 @@ export default class WeatherCard extends Component {
     return (
       <Card key={data.id}>
         City: {data.cityname}
+        <br />
         Temperature: {data.temperature}
+        <br />
         Humidity: {data.humidity}
+        <br />
         <Button label="Delete Entry!" onClick={this.onDelete} />
+        <br></br>
       </Card>
     );
   }

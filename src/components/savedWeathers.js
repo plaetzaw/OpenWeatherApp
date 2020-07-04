@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button } from "primereact/button";
 import axios from "axios";
 import WeatherCard from "./WeatherCard";
 
