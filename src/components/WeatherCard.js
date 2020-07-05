@@ -12,11 +12,13 @@ export default class WeatherCard extends Component {
     // let id = this.props.data.id;
     console.log(typeof idObj);
     console.log(idObj);
-    axios.post("http://localhost:8080/deleteWeather", idObj).then((entry) => {
-      console.log(`Removing entry ${idObj} from the Database`);
-      console.log(entry);
-      window.location.reload(false);
-    });
+    axios
+      .post("https://openweatherproject.herokuapp.com/deleteWeather", idObj)
+      .then((entry) => {
+        console.log(`Removing entry ${idObj} from the Database`);
+        console.log(entry);
+        window.location.reload(false);
+      });
   };
 
   render() {

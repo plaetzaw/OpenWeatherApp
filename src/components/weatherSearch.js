@@ -4,7 +4,6 @@ import { Button } from "primereact/button";
 import { apiKey } from "./apiKey";
 import axios from "axios";
 import dayjs from "dayjs";
-import advancedFormat from "dayjs/plugin/advancedFormat";
 import { Card } from "primereact/card";
 import "primeflex/primeflex.css";
 
@@ -57,10 +56,12 @@ export class weatherSearch extends Component {
       date: this.state.date,
     };
     console.log(weatherObj);
-    axios.post("http://localhost:8080/viewWeather", weatherObj).then((res) => {
-      console.log("Posting Weather Info to the DB");
-      console.log(res);
-    });
+    axios
+      .post("https://openweatherproject.herokuapp.com/viewWeather", weatherObj)
+      .then((res) => {
+        console.log("Posting Weather Info to the DB");
+        console.log(res);
+      });
   };
 
   render() {

@@ -15,15 +15,17 @@ export class savedWeathers extends Component {
     this.setState({
       loading: true,
     });
-    axios.get("http://localhost:8080/savedWeather").then((weather) => {
-      console.log(weather);
-      console.log(weather.data);
-      this.setState({
-        searches: weather.data,
-        loading: false,
+    axios
+      .get("https://openweatherproject.herokuapp.com/savedWeather")
+      .then((weather) => {
+        console.log(weather);
+        console.log(weather.data);
+        this.setState({
+          searches: weather.data,
+          loading: false,
+        });
+        console.log(this.state.searches);
       });
-      console.log(this.state.searches);
-    });
   }
 
   // onDelete = (e) => {
