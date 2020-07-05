@@ -30,7 +30,7 @@ export class weatherSearch extends Component {
     console.log(this.state.citySearched);
     axios
       .get(
-        `http://api.openweathermap.org/data/2.5/weather?q=${this.state.citySearched}&appid=${apiKey}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${this.state.citySearched}&appid=${apiKey}`
       )
       .then((weather) => {
         this.setState({
