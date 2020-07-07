@@ -1,0 +1,13 @@
+.weatherSearch {
+  margin: 5px;
+  border-color: blue;
+  border-radius: 5px;
+}
+
+.weatherCard {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  background-color: blueviolet;
+  border-radius: 5px;
+}

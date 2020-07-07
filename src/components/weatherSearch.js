@@ -5,11 +5,14 @@ import { apiKey } from "./apiKey";
 import axios from "axios";
 import dayjs from "dayjs";
 import { Card } from "primereact/card";
+import { Growl } from "primereact/growl";
+
 import "primeflex/primeflex.css";
 
 export class weatherSearch extends Component {
   constructor() {
     super();
+
     this.state = {
       citySearched: "",
       temperature: null,
@@ -61,31 +64,44 @@ export class weatherSearch extends Component {
       .then((res) => {
         console.log("Posting Weather Info to the DB");
         console.log(res);
+        alert("Weather Info Submitted to Database");
       });
   };
 
   render() {
+    const background = {
+      backgroundColor: "lightblue",
+    };
+
+    const searchStyle = {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    };
+
     return (
-      <div className="p-fluid">
+      <div style={background}>
         <br />
-        What city would you like to search for weather in?
+        <p style={searchStyle}>
+          <h2>What city would you like to search for weather in?</h2>
+        </p>
         <br />
-        <div className="p-fluid">
+        <div style={searchStyle} className="p-fluid">
           <InputText
             name="citySearched"
             placeholder="City"
             onChange={(e) => this.handleChange(e)}
           />
-          <Button label="Search!" onClick={this.onSubmit} />
-          <Button label="SAVE!" onClick={this.onSave} />
+          <Button label="Search Weather!" onClick={this.onSubmit} />
+          <Button label="Save Weather!" onClick={this.onSave} />
         </div>
-        <Card>
+        <Card style={searchStyle}>
           <br />
-          Weather in {this.state.citySearched}
+          <h3>Weather in {this.state.citySearched}</h3>
           <br />
-          Temperature: {this.state.temperature}F
+          <h3>Temperature: {this.state.temperature}F</h3>
           <br />
-          Humidity: {this.state.humidity}%
+          <h3>Humidity: {this.state.humidity}%</h3>
         </Card>
       </div>
     );

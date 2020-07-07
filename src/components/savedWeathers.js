@@ -28,19 +28,9 @@ export class savedWeathers extends Component {
       });
   }
 
-  // onDelete = (e) => {
-  //   this.setState({
-  //     toDelete: this.cards.id,
-  //   });
-  //   e.preventDefault();
-  //   axios.post("http://localhost:8080/savedWeather").then((entry) => {
-  //     // ({ id: id });
-  //   });
-  // };
-
   render() {
     if (this.state.searches === null) {
-      return <p>PLEASE SEARCH FOR SOMETHING</p>;
+      return <p>Pulling previous searches from database</p>;
     } else {
       const weatherInfo = this.state.searches;
       //   let loading = this.state.loading ? { weatherCard } : <div>Loading!</div>;
@@ -50,14 +40,7 @@ export class savedWeathers extends Component {
       ));
       return (
         <>
-          {weatherCardStuff}
-          {/* <Card key={data.cards.id}>
-                  City: {data.cards.cityname}
-                  Temperature: {data.cards.temperature}
-                  Humidity: {data.cards.humidity}
-                  <Button label="Delete Entry!" onClick={this.onDelete} />
-              </Card> */}
-          {/* <WeatherCard data={this.state.searches} /> */}
+          <div className="p-grid">{weatherCardStuff}</div>
         </>
       );
     }

@@ -4,6 +4,12 @@ import { Toolbar } from "primereact/toolbar";
 
 class Header extends Component {
   render() {
+    const headerStyle = {
+      display: "Flex",
+      alignItems: "Center",
+      justifyContent: "Center",
+    };
+
     return (
       <>
         <Toolbar>
@@ -13,7 +19,7 @@ class Header extends Component {
           <div className="p-toolbar-group-right">
             <Link to="/savedWeathers">Previous Weather Searches</Link>
           </div>
-          <h1>Open Weather App</h1>
+          <h1 style={headerStyle}>Open Weather App</h1>
         </Toolbar>
       </>
     );

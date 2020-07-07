@@ -22,6 +22,16 @@ export default class WeatherCard extends Component {
   };
 
   render() {
+    const cardStyle = {
+      display: "flex",
+      margin: "10px",
+      backgroundColor: "teal",
+      border: "5px",
+      alignItems: "center",
+      color: "black",
+      // justifyContent: "center",
+    };
+
     console.log(this.props);
 
     const { data } = this.props;
@@ -37,14 +47,15 @@ export default class WeatherCard extends Component {
 
     //   ))
     return (
-      <Card key={data.id}>
-        City: {data.cityname}
+      <Card style={cardStyle} key={data.id}>
+        <strong>City: {data.cityname}</strong>
         <br />
-        Temperature: {data.temperature}
+        <strong>Temperature: {data.temperature}</strong>
         <br />
-        Humidity: {data.humidity}
+        <strong>Humidity: {data.humidity}</strong>
         <br />
-        Inserted into DB: {data.date}
+        <strong>Inserted into DB: {data.date}</strong>
+        <br />
         <Button label="Delete Entry!" onClick={this.onDelete} />
         <br></br>
       </Card>
