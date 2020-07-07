@@ -5,7 +5,6 @@ import { apiKey } from "./apiKey";
 import axios from "axios";
 import dayjs from "dayjs";
 import { Card } from "primereact/card";
-import { Growl } from "primereact/growl";
 
 import "primeflex/primeflex.css";
 

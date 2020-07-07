@@ -25,11 +25,10 @@ export default class WeatherCard extends Component {
     const cardStyle = {
       display: "flex",
       margin: "10px",
-      backgroundColor: "teal",
+      backgroundColor: "lightblue",
       border: "5px",
       alignItems: "center",
       color: "black",
-      // justifyContent: "center",
     };
 
     console.log(this.props);
@@ -37,15 +36,6 @@ export default class WeatherCard extends Component {
     const { data } = this.props;
     console.log(`THIS IS THE DATA FOR WEATHER CARD ${data.id}`);
 
-    // if (data.searches === null) {
-    //   return <p>LOADING</p>;
-    // } else {
-    //   const weatherInfo = data.searches;
-    //   console.log(weatherInfo);
-
-    //   const weatherCard = weatherInfo.map((cards) => (
-
-    //   ))
     return (
       <Card style={cardStyle} key={data.id}>
         <strong>City: {data.cityname}</strong>
